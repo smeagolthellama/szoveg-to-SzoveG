@@ -106,6 +106,8 @@ void atmasol(char * t1, const char * t2)
 	for(i = 0; i < h; i++) {
 		t1[i] = t2[i];
 	}
+	t1[h]=0;
+
 }
 ///bemasolja a t1be a t2 elso h karakteret.
 void atmasol(char * t1, const char * t2, int h)
@@ -115,6 +117,7 @@ void atmasol(char * t1, const char * t2, int h)
 	for(i = 0; i < h; i++) {
 		t1[i] = t2[i];
 	}
+	t1[h]=0;
 }
 
 
@@ -144,16 +147,26 @@ void szavakrabont(int & len, char* c, char szavak[][CHAR_STAR_SIZE])
 
 int szavak(char* c, char szok[][CHAR_STAR_SIZE])
 {
+
 	int i = 0, k;
 	char c1[CHAR_STAR_SIZE];
+#ifdef DEBUG
+	std::cout<<"start of szavak(char *c\""<<c<<"\" , char szok[][])\n"<<std::endl;
+#endif // DEBUG
 
 	while(hossz(c)) {
+	#ifdef DEBUG
+		std::cout<<hossz(c)<<std::endl;
+	#endif // DEBUG
+
 		k = kereschar(c, ' ');
 #ifdef DEBUG
 		std::cout<<k<<std::endl;
 #endif // DEBUG
 		if(k == -1) {
-			k = hossz(c) - 1;
+			k = hossz(c);
+		}else{
+			k++;
 		}
 #ifdef DEBUG
 		std::cout<<"k: "<<k<<std::endl;
@@ -170,7 +183,7 @@ int szavak(char* c, char szok[][CHAR_STAR_SIZE])
 		beszur(szok[i++], c1, 0);
 	}
 
-	return i - 1;
+	return i;
 }
 
 

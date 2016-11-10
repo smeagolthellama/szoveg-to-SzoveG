@@ -18,32 +18,33 @@ void feldolgoz(ifstream& f, ofstream& g)
 {
 	int len;
 	int i;
-	char szavak[CHAR_STAR_SIZE][CHAR_STAR_SIZE];
+	char szk[CHAR_STAR_SIZE][CHAR_STAR_SIZE];
 	char c[CHAR_STAR_SIZE];
-
+	cout << "In feldogoz\n";
 	while(!f.eof()) {
 		f.getline(c, CHAR_STAR_SIZE);
-		cout<<hossz(c);
+		cout<<hossz(c)<<endl;
 
 		if(hossz(c) > 0) {
-			szavakrabont(len, c, szavak); // restart szavak with 1 word/line, overwriting whats there??
-
+			cout << "calling szavak\n";
+			len = szavak( c, szk); // restart szavak with 1 word/line, overwriting whats there??
+			cout<<len;
 			for(i = 0; i < len; i++) {
-				int h=hossz(szavak[i]);
+				int h=hossz(szk[i]);
 				if (h) {
-					cout << szavak[i] << endl;
-					szavak[i][0] -= 32;
+					cout << szk[i] << endl;
+					szk[i][0] -= 32;
 					if(h>1){
-						szavak[i][h - 1] -= 32;
+						szk[i][h - 1] -= 32;
 					}
-					cout << szavak[i] << endl;
+					cout << szk[i] << endl;
 				}
 			}
 
 			for(i = 0; i < len; i++) {
-				for(int j = 0; j < hossz(szavak[i]); j++) {
-					g << szavak[i][j] /*<< ' ' << (unsigned short int) szavak[i][j] << ' '*/;
-					cout<<szavak[i][j];
+				for(int j = 0; j < hossz(szk[i]); j++) {
+					g << szk[i][j] /*<< ' ' << (unsigned short int) szk[i][j] << ' '*/;
+					cout<<szk[i][j];
 				}
 				cout<<endl;
 				g << endl;
